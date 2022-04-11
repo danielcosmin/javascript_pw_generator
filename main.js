@@ -17,23 +17,19 @@ const SYMBOL_CODES = arrayFromLowToHigh(33, 47)
   .concat(arrayFromLowToHigh(91, 96))
   .concat(arrayFromLowToHigh(123, 126))
 
-// Copy Password
-copybtnDOM.addEventListener('click', () => {
-  const textarea = document.createElement('textarea')
-  const passwordToCopy = resultDOM.innerText
+// Copy Functionality
+const copyToClipboard = () => {
+  let content = document.getElementById('result').innerHTML
 
-  // Edge Case when Password is Empty
-  if (!passwordToCopy) return
-
-  // Copy Functionality
-  textarea.value = passwordToCopy
-  document.body.appendChild(textarea)
-  textarea.select()
-  // The execCommand() is officially obsolete/deprecated but there's no alternative.
-  document.execCommand('copy')
-  textarea.remove()
-  alert('Password Copied to Clipboard')
-})
+  navigator.clipboard.writeText(content)
+    .then(() => {
+      alert('Password copied')
+    })
+    .catch(err => {
+      console.log('Something when wrong', err)
+    })
+  return
+}
 
 // Checking the options that are selected and setting the password
 form.addEventListener('submit', (e) => {
