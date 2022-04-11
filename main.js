@@ -28,7 +28,6 @@ const copyToClipboard = () => {
     .catch(err => {
       console.log('Something when wrong', err)
     })
-  return
 }
 
 // Checking the options that are selected and setting the password
